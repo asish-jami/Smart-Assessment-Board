@@ -1,0 +1,43 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class SmartAssessmentBoard {
+    private static Map<String, String> statesAndCapitals = new HashMap<>();
+    static {
+        statesAndCapitals.put("Maharashtra", "Mumbai");
+        statesAndCapitals.put("Karnataka", "Bengaluru");
+        statesAndCapitals.put("Tamil Nadu", "Chennai");
+        statesAndCapitals.put("Gujarat", "Gandhinagar");
+        statesAndCapitals.put("West Bengal", "Kolkata");
+        statesAndCapitals.put("Rajasthan", "Jaipur");
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
+        System.out.println("Welcome to the Smart Assessment Quiz on States and Capitals!");
+        System.out.println("You will be asked to identify the capitals of different Indian states.");
+        System.out.println("Let's begin!\n");
+        for (Map.Entry<String, String> entry : statesAndCapitals.entrySet()) {
+            String state = entry.getKey();
+            String correctCapital = entry.getValue();
+            System.out.println("What is the capital of " + state + "?");
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase(correctCapital)) {
+                System.out.println("Correct!");
+                score++;
+            } else {
+                System.out.println("Incorrect! The capital of " + state + " is " + correctCapital + ".");
+            }
+            System.out.println();
+        }
+        System.out.println("Quiz Over! Your final score is: " + score + "/" + statesAndCapitals.size());
+        if (score == statesAndCapitals.size()) {
+            System.out.println("Excellent! You got all the answers correct!");
+        } else if (score > statesAndCapitals.size() / 2) {
+            System.out.println("Good job! You answered most questions correctly.");
+        } else {
+            System.out.println("Keep practicing! You'll get better with more practice.");
+        }
+        scanner.close();
+    }
+}
